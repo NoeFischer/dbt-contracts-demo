@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: "Staging layer for raw orders. Light casting only, no business logic. No contract enforced here."
+    columns:
+      - name: order_id
+        description: "Order identifier from source system."
+      - name: amount
+        description: "Order amount in USD."
+      - name: status
+        description: "Order status: pending, shipped, completed, cancelled."
+
+  - name: stg_customers
+    description: "Staging layer for raw customers. No contract enforced here."
+    columns:
+      - name: customer_id
+        description: "Customer identifier from source system."
+      - name: email
+        description: "Customer email address."
+
+  - name: stg_products
+    description: "Staging layer for raw products. No contract enforced here."
+    columns:
+      - name: product_id
+        description: "Product identifier from source system."
+      - name: category
+        description: "Product category name."
