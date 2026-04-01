@@ -3,8 +3,8 @@ version: 2
 models:
   - name: gold_fct_orders_broken
     description: >
-      Intentionally broken version of gold_fct_orders_v2, used to demonstrate
-      dbt contract enforcement. Returns 'id' instead of 'order_id'.
+      Intentionally broken model used to demonstrate dbt contract enforcement.
+      Returns 'id' instead of 'order_id', violating its contract.
     config:
       contract:
         enforced: true
