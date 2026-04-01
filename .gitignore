@@ -212,8 +212,5 @@ dbt_packages/
 logs/
 *.duckdb
 
-# Generated notebook outputs
-*.png
-
 # VS Code settings
 settings.json
