@@ -19,12 +19,12 @@ products as (
 )
 
 select
-    o.order_id      as id,              -- ❌ renamed: contract expects 'order_id'
+    o.order_id as id,              -- ❌ renamed: contract expects 'order_id'
     o.customer_id,
     o.product_id,
     o.amount,
     o.status,
-    o.created_at    as order_date,
-    p.category      as product_category
-from orders o
-left join products p on o.product_id = p.product_id
+    o.created_at as order_date,
+    p.category as product_category
+from orders as o
+left join products as p on o.product_id = p.product_id

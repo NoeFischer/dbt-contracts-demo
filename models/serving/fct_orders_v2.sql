@@ -13,10 +13,10 @@ final as (
         o.product_id,
         o.amount,
         o.status,
-        o.created_at      as order_date,
-        p.category        as product_category
-    from orders o
-    left join products p
+        o.created_at as order_date,
+        p.category as product_category
+    from orders as o
+    left join products as p
         on o.product_id = p.product_id
 )
 
