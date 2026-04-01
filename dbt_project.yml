@@ -16,12 +16,12 @@ clean-targets:
 
 models:
   dbt_contracts_demo:
-    staging:
+    bronze:
       +materialized: view
-      +schema: staging
-    marts:
+      +schema: bronze
+    serving:
       +materialized: table
-      +schema: marts
+      +schema: serving
 
 seeds:
   dbt_contracts_demo:
