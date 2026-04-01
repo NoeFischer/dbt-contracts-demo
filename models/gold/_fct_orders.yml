@@ -1,55 +1,56 @@
 version: 2
 
 models:
-  - name: fct_orders
-    description: >
-      Fact table for orders. Demonstrates dbt contracts with versioning.
-      v1 is the baseline. v2 adds product_category without breaking existing consumers.
-
-    latest_version: 2
-
+  - name: gold_fct_orders_v1
+    description: "Fact table v1 — 6 columns, baseline."
     config:
       contract:
         enforced: true
-
     constraints:
       - type: primary_key
         columns: [order_id]
-
     columns:
       - name: order_id
         data_type: bigint
-        description: "Primary key — unique order identifier."
-        constraints:
-          - type: not_null
+        constraints: [{type: not_null}]
       - name: customer_id
         data_type: bigint
-        description: "Foreign key to dim_customers."
-        constraints:
-          - type: not_null
+        constraints: [{type: not_null}]
       - name: product_id
         data_type: bigint
-        description: "Foreign key to dim_products."
-        constraints:
-          - type: not_null
+        constraints: [{type: not_null}]
       - name: amount
         data_type: decimal(10,2)
-        description: "Order total in USD."
-        constraints:
-          - type: not_null
+        constraints: [{type: not_null}]
       - name: status
         data_type: varchar
-        description: "Order lifecycle status."
       - name: order_date
         data_type: date
-        description: "Calendar date the order was placed."
 
-    versions:
-      - v: 1
-      - v: 2
-        defined_in: fct_orders_v2
-        columns:
-          - include: all
-          - name: product_category
-            data_type: varchar
-            description: "Product category from the products dimension. Added in v2."
+  - name: gold_fct_orders_v2
+    description: "Fact table v2 — adds product_category."
+    config:
+      contract:
+        enforced: true
+    constraints:
+      - type: primary_key
+        columns: [order_id]
+    columns:
+      - name: order_id
+        data_type: bigint
+        constraints: [{type: not_null}]
+      - name: customer_id
+        data_type: bigint
+        constraints: [{type: not_null}]
+      - name: product_id
+        data_type: bigint
+        constraints: [{type: not_null}]
+      - name: amount
+        data_type: decimal(10,2)
+        constraints: [{type: not_null}]
+      - name: status
+        data_type: varchar
+      - name: order_date
+        data_type: date
+      - name: product_category
+        data_type: varchar

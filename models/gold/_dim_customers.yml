@@ -1,13 +1,11 @@
 version: 2
 
 models:
-  - name: dim_customers
+  - name: gold_dim_customers
     description: "Customer dimension table with enforced contract."
-
     config:
       contract:
         enforced: true
-
     columns:
       - name: customer_id
         data_type: bigint
@@ -17,10 +15,7 @@ models:
           - type: unique
       - name: name
         data_type: varchar
-        description: "Full customer name."
       - name: email
         data_type: varchar
-        description: "Customer email address."
       - name: country
         data_type: varchar
-        description: "ISO country code."
