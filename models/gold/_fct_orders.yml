@@ -7,7 +7,6 @@ models:
       layer can reference ref('gold_fct_orders') and automatically
       resolve to the latest version.
     latest_version: 2
-
     config:
       contract:
         enforced: true
@@ -20,13 +19,16 @@ models:
     columns:
       - name: order_id
         data_type: bigint
-        constraints: [{type: not_null}]
+        constraints:
+          - type: not_null
       - name: customer_id
         data_type: bigint
-        constraints: [{type: not_null}]
+        constraints:
+          - type: not_null
       - name: product_id
         data_type: bigint
-        constraints: [{type: not_null}]
+        constraints:
+          - type: not_null
       - name: status
         data_type: varchar
       - name: order_date
@@ -39,7 +41,8 @@ models:
           - include: all
           - name: amount
             data_type: decimal(10,2)
-            constraints: [{type: not_null}]
+            constraints:
+              - type: not_null
 
       - v: 2
         defined_in: gold_fct_orders_v2
@@ -47,6 +50,41 @@ models:
           - include: all
           - name: order_total
             data_type: decimal(10,2)
-            constraints: [{type: not_null}]
+            constraints:
+              - type: not_null
           - name: product_category
             data_type: varchar
+
+  - name: gold_fct_orders_broken
+    description: >
+      Intentionally broken model used to demonstrate dbt contract enforcement.
+      Returns 'id' instead of 'order_id', violating its contract.
+    config:
+      contract:
+        enforced: true
+    constraints:
+      - type: primary_key
+        columns: [order_id]
+    columns:
+      - name: order_id
+        data_type: bigint
+        constraints:
+          - type: not_null
+      - name: customer_id
+        data_type: bigint
+        constraints:
+          - type: not_null
+      - name: product_id
+        data_type: bigint
+        constraints:
+          - type: not_null
+      - name: amount
+        data_type: decimal(10,2)
+        constraints:
+          - type: not_null
+      - name: status
+        data_type: varchar
+      - name: order_date
+        data_type: date
+      - name: product_category
+        data_type: varchar
