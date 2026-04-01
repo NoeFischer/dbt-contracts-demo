@@ -16,9 +16,9 @@ clean-targets:
 
 models:
   dbt_contracts_demo:
-    bronze:
+    staging:
       +materialized: view
-      +schema: bronze
+      +schema: staging
     serving:
       +materialized: table
       +schema: serving
