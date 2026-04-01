@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: fct_orders_broken
+    description: >
+      Intentionally broken version of fct_orders_v2, used to demonstrate
+      dbt contract enforcement. The model returns 'id' instead of 'order_id',
+      which violates the declared contract below.
+
+    config:
+      contract:
+        enforced: true
+
+    constraints:
+      - type: primary_key
+        columns: [order_id]
+
+    columns:
+      - name: order_id
+        data_type: bigint
+        description: "Primary key — unique order identifier."
+        constraints:
+          - type: not_null
+      - name: customer_id
+        data_type: bigint
+        constraints:
+          - type: not_null
+      - name: product_id
+        data_type: bigint
+        constraints:
+          - type: not_null
+      - name: amount
+        data_type: decimal(10,2)
+        constraints:
+          - type: not_null
+      - name: status
+        data_type: varchar
+      - name: order_date
+        data_type: date
+      - name: product_category
+        data_type: varchar
