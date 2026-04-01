@@ -28,7 +28,7 @@ models:
         data_type: date
 
   - name: gold_fct_orders_v2
-    description: "Fact table v2 — adds product_category."
+    description: "Fact table v2 — renames amount → order_total, adds product_category."
     config:
       contract:
         enforced: true
@@ -45,7 +45,7 @@ models:
       - name: product_id
         data_type: bigint
         constraints: [{type: not_null}]
-      - name: amount
+      - name: order_total
         data_type: decimal(10,2)
         constraints: [{type: not_null}]
       - name: status

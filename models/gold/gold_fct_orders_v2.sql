@@ -11,7 +11,7 @@ final as (
         o.order_id,
         o.customer_id,
         o.product_id,
-        o.amount,
+        o.amount as order_total,
         o.status,
         o.created_at as order_date,
         p.category as product_category
